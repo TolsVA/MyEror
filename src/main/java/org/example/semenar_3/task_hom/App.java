@@ -1,5 +1,6 @@
 package org.example.semenar_3.task_hom;
 
+import org.example.semenar_3.task_hom.ui.Presentable;
 import org.example.semenar_3.task_hom.ui.command.Commands;
 import org.example.semenar_3.task_hom.ui.Presenter;
 import org.example.semenar_3.task_hom.ui.command.Create;
@@ -13,17 +14,20 @@ import java.util.List;
 
 public class App {
     private List<Commands> commands;
+    private static App instance;
 
     private App() {
         View view = new View();
-        Presenter presenter = new Presenter(view, new UserValidator());
+        Presentable presenter = new Presenter(view, new UserValidator());
         Commands.setPresenter(presenter);
         commands = initCommands();
         view.run(commands);
     }
 
     public static void run() {
-        new App();
+        if (instance == null) {
+            instance = new App();
+        }
     }
 
     private List<Commands> initCommands() {

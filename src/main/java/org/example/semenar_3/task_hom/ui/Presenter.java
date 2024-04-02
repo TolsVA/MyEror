@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import static java.lang.System.*;
 
-public class Presenter {
+public class Presenter implements Presentable{
     private final ConsoleManager cm;
     private final Printable view;
     private final List<User> userList;
